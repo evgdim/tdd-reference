@@ -11,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.github.evgdim.tdd.entity.Person;
 import com.github.evgdim.tdd.repository.PersonRepository;
 
 @RunWith(SpringRunner.class)
@@ -30,7 +31,7 @@ public class JpaTests {
 	
 	@Test
 	public void findByName_shouldReturnTheEntity() {
-		Person person = new Person(null, "Dimitrov", 29);
+		Person person = new Person(null, "Evgeni", 29);
 		em.persistAndFlush(person);
 		Optional<Person> findByName = this.personRepo.findByName(person.getName());
 		assertThat(findByName).isNotNull();
