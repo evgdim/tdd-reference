@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Optional;
 
+import javax.persistence.PersistenceException;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +38,13 @@ public class JpaTests {
 		Optional<Person> findByName = this.personRepo.findByName(person.getName());
 		assertThat(findByName).isNotNull();
 		assertThat(findByName.map(p -> p.getName()).get()).isEqualTo(person.getName());
+	}
+	
+	@Test(expected=PersistenceException.class)
+	public void saveWithSameName_shouldThrowException() {
+		Person person = new Person(null, "Evgeni", 29);
+		em.persistAndFlush(person);
+		Person person2 = new Person(null, "Evgeni", 30);
+		em.persistAndFlush(person2);
 	}
 }
