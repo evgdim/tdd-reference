@@ -1,9 +1,18 @@
 package com.github.evgdim.tdd;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Person {
+	@Id
+	@GeneratedValue
 	private Long id;
 	private String name;
 	private Integer age;
+	
+	public Person() {}
 	
 	public Person(Long id, String name, Integer age) {
 		this.id = id;
