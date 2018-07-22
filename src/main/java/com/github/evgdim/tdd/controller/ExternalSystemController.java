@@ -12,11 +12,9 @@ import com.github.evgdim.tdd.entity.Person;
 @RestController
 @RequestMapping("external")
 public class ExternalSystemController {
-	private final RestTemplateBuilder rtb;
 	private final RestTemplate rt;
-	public ExternalSystemController(RestTemplateBuilder rtb) {
-		this.rtb = rtb;
-		this.rt = rtb.rootUri("http://localhost:8888").build();
+	public ExternalSystemController() {
+		this.rt = new RestTemplateBuilder().rootUri("http://localhost:8888").build();
 	}
 	@GetMapping
 	public Person call() {
