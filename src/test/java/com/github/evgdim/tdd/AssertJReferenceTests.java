@@ -10,12 +10,9 @@ import java.util.stream.Collectors;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
 
 import com.github.evgdim.tdd.entity.Person;
 
-@RunWith(MockitoJUnitRunner.class)
 public class AssertJReferenceTests {
 	private List<Person> people;
 	private Person aaa;
