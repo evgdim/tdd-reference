@@ -20,10 +20,10 @@ import com.github.evgdim.tdd.repository.PersonRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { TddReferenceApplication.class })
-@ContextConfiguration(initializers = {PostgresIntegrationTests.Initializer.class })
-public class PostgresIntegrationTests {
+@ContextConfiguration(initializers = {O5_PostgresIntegrationTests.Initializer.class })
+public class O5_PostgresIntegrationTests {
 	@ClassRule
-	public static PostgreSQLContainer postgreSQLContainer = new PostgreSQLContainer<>("postgres:10.4").withDatabaseName("sampledb")
+	public static PostgreSQLContainer<?> postgreSQLContainer = new PostgreSQLContainer<>("postgres:10.4").withDatabaseName("sampledb")
 			.withUsername("sampleuser").withPassword("samplepwd").withStartupTimeout(Duration.ofSeconds(600));
 
 	static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
