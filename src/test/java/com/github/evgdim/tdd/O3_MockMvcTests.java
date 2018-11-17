@@ -17,20 +17,20 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.github.evgdim.tdd.controller.PersonController;
 import com.github.evgdim.tdd.entity.Person;
-import com.github.evgdim.tdd.service.BusinessService;
+import com.github.evgdim.tdd.service.PersonServiceImpl;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(controllers = { PersonController.class })
-public class MockMvcTests {
+public class O3_MockMvcTests {
 	@Autowired
 	private MockMvc mockMvc;
 	
 	@MockBean
-	private BusinessService businessService;
+	private PersonServiceImpl businessService;
 	
 	@Test
 	public void personOfTheYear_should_returnOKTestPerson() throws Exception {
-		when(businessService.determinePerson(ArgumentMatchers.any())).thenReturn(new Person(1L, "TestPerson", 55));
+		when(businessService.checkPerson(ArgumentMatchers.any())).thenReturn(new Person(1L, "TestPerson", 55));
 		mockMvc.perform(get("/people/1"))
 			   .andExpect(status().isOk())
 			   .andExpect(jsonPath("$.name", is("TestPerson")));

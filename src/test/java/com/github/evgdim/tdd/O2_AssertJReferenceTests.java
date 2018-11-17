@@ -13,7 +13,7 @@ import org.junit.Test;
 
 import com.github.evgdim.tdd.entity.Person;
 
-public class AssertJReferenceTests {
+public class O2_AssertJReferenceTests {
 	private List<Person> people;
 	private Person aaa;
 	@Before

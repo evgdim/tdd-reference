@@ -20,7 +20,7 @@ import com.github.tomakehurst.wiremock.junit.WireMockRule;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class FullRunningServerTests {
+public class O4_FullRunningServerTests {
 	@Rule
 	public WireMockRule wireMockRule = new WireMockRule(8888, 8889);
 	
