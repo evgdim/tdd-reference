@@ -1,4 +1,4 @@
-package com.github.evgdim.tdd;
+package com.github.evgdim.tdd.database;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -18,7 +18,7 @@ import com.github.evgdim.tdd.repository.PersonRepository;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class O99_JpaTests {
+public class O99_JpaIntegrationTests {
 	@Autowired
 	private TestEntityManager em;
 	@Autowired

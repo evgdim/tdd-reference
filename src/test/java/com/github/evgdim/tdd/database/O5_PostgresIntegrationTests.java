@@ -1,4 +1,4 @@
-package com.github.evgdim.tdd;
+package com.github.evgdim.tdd.database;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -16,6 +16,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.testcontainers.containers.PostgreSQLContainer;
 
+import com.github.evgdim.tdd.TddReferenceApplication;
 import com.github.evgdim.tdd.repository.PersonRepository;
 
 @RunWith(SpringRunner.class)

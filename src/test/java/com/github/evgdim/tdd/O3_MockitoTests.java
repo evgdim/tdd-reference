@@ -14,12 +14,14 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import com.github.evgdim.tdd.entity.Person;
 import com.github.evgdim.tdd.repository.PersonRepository;
+import com.github.evgdim.tdd.service.AccountClient;
 import com.github.evgdim.tdd.service.PersonNotOldEnoughException;
 import com.github.evgdim.tdd.service.PersonServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
 public class O3_MockitoTests {
 	@Mock private PersonRepository personRepository;
+	@Mock private AccountClient accountClient;
 	
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
@@ -30,7 +32,7 @@ public class O3_MockitoTests {
 		when(personRepository.findById(1L)).thenReturn(Optional.of(kiroAge20()));
 		
 		//when
-		PersonServiceImpl personServ= new PersonServiceImpl(personRepository);
+		PersonServiceImpl personServ= new PersonServiceImpl(personRepository, accountClient);
 		Person person = personServ.checkPerson(1L);
 		
 		//should
@@ -46,7 +48,7 @@ public class O3_MockitoTests {
 		this.thrown.expect(PersonNotOldEnoughException.class);
 		
 		//when
-		PersonServiceImpl personServ= new PersonServiceImpl(personRepository);
+		PersonServiceImpl personServ= new PersonServiceImpl(personRepository, accountClient);
 		personServ.checkPerson(1L);
 		
 	}
