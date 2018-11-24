@@ -1,7 +1,12 @@
 package com.github.evgdim.tdd;
 
+import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.get;
+import static com.github.tomakehurst.wiremock.client.WireMock.getRequestedFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
+import static com.github.tomakehurst.wiremock.client.WireMock.verify;
 import static org.assertj.core.api.Assertions.assertThat;
-import static com.github.tomakehurst.wiremock.client.WireMock.*;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -44,5 +49,19 @@ public class O4_FullRunningServerTests {
 		assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
 		assertThat(entity.getBody().getAge()).isEqualTo(29);
 		assertThat(entity.getBody().getName()).isEqualTo("Evgeni");
+	}
+	
+	@Test
+	public void externalSystemPeople_shoudlBeCalled() {
+		stubFor(get(urlEqualTo("/people"))
+	            .willReturn(aResponse()
+	                .withHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE)
+	                .withBodyFile("person.json")));
+	            
+		ResponseEntity<Person> entity = this.restTemplate.getForEntity("/external", Person.class);
+		
+		verify(getRequestedFor(urlEqualTo("/people")).withoutHeader(MediaType.APPLICATION_JSON_VALUE));
+		//verify(1, getRequestedFor(urlEqualTo("/people")));
+		//verify(getRequestedFor(urlEqualTo("/people")).withRequestBody(WireMock.matchingJsonPath("$.whatever")));
 	}
 }

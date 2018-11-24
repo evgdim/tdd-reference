@@ -11,6 +11,8 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 
+import com.github.evgdim.tdd.utils.Calculator;
+
 @RunWith(Parameterized.class)
 public class O12_ParametaraizedTests {
     @Parameters(name="{index}: sum of ({0} and {1}) should be ={2}")

@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.github.evgdim.tdd.entity.Person;
+import com.github.evgdim.tdd.utils.Calculator;
 
 public class O11_AssertJReferenceTests {
 	private List<Person> people;

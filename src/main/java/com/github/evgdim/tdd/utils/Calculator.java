@@ -1,4 +1,4 @@
-package com.github.evgdim.tdd;
+package com.github.evgdim.tdd.utils;
 
 import lombok.experimental.UtilityClass;
 
