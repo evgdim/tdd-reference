@@ -24,7 +24,9 @@ import com.github.evgdim.tdd.entity.Person;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, properties = {
+		"tddref.account.url=http://localhost:8888"
+})
 public class O4_FullRunningServerTests {
 	@Rule
 	public WireMockRule wireMockRule = new WireMockRule(8888, 8889);
