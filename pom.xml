@@ -52,9 +52,9 @@
 			<!-- <scope>test</scope> -->
 		</dependency>
 		<dependency>
-			<groupId>org.mock-server</groupId>
-			<artifactId>mockserver-netty</artifactId>
-			<version>5.5.0</version>
+			<groupId>com.github.tomakehurst</groupId>
+			<artifactId>wiremock</artifactId>
+			<version>1.58</version>
 			<scope>test</scope>
 		</dependency>
 
