@@ -8,28 +8,28 @@ import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 import static com.github.tomakehurst.wiremock.client.WireMock.verify;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.github.evgdim.tdd.entity.Person;
-import com.github.tomakehurst.wiremock.junit.WireMockRule;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, properties = {
 		"tddref.account.url=http://localhost:8888"
 })
+@AutoConfigureWireMock(port = 8888)
 public class O4_FullRunningServerTests {
-	@Rule
-	public WireMockRule wireMockRule = new WireMockRule(8888, 8889);
+//	@Rule
+//	public WireMockRule wireMockRule = new WireMockRule(8888, 8889);
 	
 	@Autowired
 	private TestRestTemplate restTemplate;
