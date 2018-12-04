@@ -21,6 +21,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.github.evgdim.tdd.entity.Person;
+import com.github.tomakehurst.wiremock.client.CountMatchingStrategy;
+import com.github.tomakehurst.wiremock.client.WireMock;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, properties = {
@@ -63,7 +65,7 @@ public class O4_FullRunningServerTests {
 		ResponseEntity<Person> entity = this.restTemplate.getForEntity("/external", Person.class);
 		
 		verify(getRequestedFor(urlEqualTo("/people")).withoutHeader(MediaType.APPLICATION_JSON_VALUE));
-		//verify(1, getRequestedFor(urlEqualTo("/people")));
+		//verify(WireMock.moreThanOrExactly(1), getRequestedFor(urlEqualTo("/people")));
 		//verify(getRequestedFor(urlEqualTo("/people")).withRequestBody(WireMock.matchingJsonPath("$.whatever")));
 	}
 }
