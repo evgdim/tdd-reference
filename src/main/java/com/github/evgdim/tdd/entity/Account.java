@@ -10,6 +10,7 @@ import lombok.Data;
 @AllArgsConstructor
 @Builder
 public class Account {
+	private Long id;
 	private String number;
 	private BigDecimal amount;
 }
