@@ -21,8 +21,8 @@ import com.github.evgdim.tdd.repository.PersonRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { TddReferenceApplication.class })
-@ContextConfiguration(initializers = {O5_PostgresIntegrationTests.Initializer.class })
-public class O5_PostgresIntegrationTests {
+@ContextConfiguration(initializers = {O7_PostgresIntegrationTests.Initializer.class })
+public class O7_PostgresIntegrationTests {
 	@ClassRule
 	public static PostgreSQLContainer<?> postgreSQLContainer = new PostgreSQLContainer<>("postgres:10.4").withDatabaseName("sampledb")
 			.withUsername("sampleuser").withPassword("samplepwd").withStartupTimeout(Duration.ofSeconds(600));

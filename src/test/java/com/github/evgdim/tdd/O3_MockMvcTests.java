@@ -1,6 +1,6 @@
 package com.github.evgdim.tdd;
 
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -32,7 +32,7 @@ public class O3_MockMvcTests {
 	public void personOfTheYear_should_returnOKTestPerson() throws Exception {
 		when(businessService.checkPerson(ArgumentMatchers.any())).thenReturn(new Person(1L, "TestPerson", 55));
 		mockMvc.perform(get("/people/1"))
-			   .andExpect(status().isOk())
-			   .andExpect(jsonPath("$.name", is("TestPerson")));
+			   .andExpect(status().is2xxSuccessful())
+			   .andExpect(jsonPath("$.name", equalTo("TestPerson")));
 	}
 }

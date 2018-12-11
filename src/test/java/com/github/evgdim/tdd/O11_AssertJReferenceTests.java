@@ -25,29 +25,42 @@ public class O11_AssertJReferenceTests {
 	
 	@Test
 	public void add_shouldReturn3_whenPass1And2() {
-		assertThat(Calculator.add(1, 2)).isEqualTo(3);
+		assertThat(Calculator.add(1, 2))
+			.isEqualTo(3);
 	}
 	
 	@Test
 	public void collection_shouldCointainOnlyAAA() {
-		assertThat(people).filteredOn(p -> p.getAge() < 2).contains(aaa);
+		assertThat(people)
+			.filteredOn(p -> p.getAge() < 2)
+			.contains(aaa);
 	}
 	
 	@Test
 	public void collection_shouldCointainNameAAA() {
-		List<Person> filteretPeople = this.people.stream().filter(p -> p.getAge() < 2).collect(Collectors.toList());
-		assertThat(filteretPeople).extracting("name").contains("AAA").doesNotContain("BBB", "CCC", "DDD");
+		List<Person> filteretPeople = this.people.stream()
+											.filter(p -> p.getAge() < 2)
+											.collect(Collectors.toList());
+		assertThat(filteretPeople)
+			.extracting("name")
+			.contains("AAA")
+			.doesNotContain("BBB", "CCC", "DDD");
 	}
 	
 	@Test
 	public void collection_shouldCointainNameAAAAndAge1() {
-		List<Person> filteretPeople = this.people.stream().filter(p -> p.getAge() < 2).collect(Collectors.toList());
-		assertThat(filteretPeople).extracting("name", "age").contains(tuple("AAA", 1));
+		List<Person> filteretPeople = this.people.stream()
+											.filter(p -> p.getAge() < 2)
+											.collect(Collectors.toList());
+		assertThat(filteretPeople)
+			.extracting("name", "age")
+			.contains(tuple("AAA", 1));
 	}
 	
 	@Test
 	public void lambda_shouldThrowException() {
-	   assertThatThrownBy(() -> { throw new Exception("boom!"); }).isInstanceOf(Exception.class)
-	                                                             .hasMessageContaining("boom");
+	   assertThatThrownBy(() -> { throw new Exception("boom!"); })
+	   		.isInstanceOf(Exception.class)
+	        .hasMessageContaining("boom");
 	}
 }

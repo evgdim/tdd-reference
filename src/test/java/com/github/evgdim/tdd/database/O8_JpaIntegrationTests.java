@@ -18,7 +18,7 @@ import com.github.evgdim.tdd.repository.PersonRepository;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class O99_JpaIntegrationTests {
+public class O8_JpaIntegrationTests {
 	@Autowired
 	private TestEntityManager em;
 	@Autowired

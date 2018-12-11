@@ -21,7 +21,7 @@ import com.github.evgdim.tdd.repository.JdbcAccountRepository;
 @JdbcTest
 @Import(JdbcAccountRepository.class)
 @Sql(scripts = {"drop_account_table.sql","create_account_table.sql"})
-public class JdbcTests {
+public class O6_JdbcTests {
 	@Autowired
 	private AccountRepository accRepo;
 	
