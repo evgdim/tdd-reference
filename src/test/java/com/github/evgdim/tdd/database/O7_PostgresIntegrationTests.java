@@ -32,7 +32,10 @@ public class O7_PostgresIntegrationTests {
 			TestPropertyValues
 					.of("spring.datasource.url=" + postgreSQLContainer.getJdbcUrl(),
 							"spring.datasource.username=" + postgreSQLContainer.getUsername(),
-							"spring.datasource.password=" + postgreSQLContainer.getPassword())
+							"spring.datasource.password=" + postgreSQLContainer.getPassword(),
+							"spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect", 
+							"spring.jpa.show-sql=true", 
+							"spring.jpa.hibernate.ddl-auto=create")
 					.applyTo(configurableApplicationContext.getEnvironment());
 		}
 	}
