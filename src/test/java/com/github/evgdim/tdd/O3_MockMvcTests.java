@@ -30,7 +30,7 @@ public class O3_MockMvcTests {
 	private PersonServiceImpl businessService;
 	
 	@Test
-	public void person1_should_returnOKTestPerson() throws Exception {
+	public void person1_shouldReturnOKTestPerson_whenPersonIsFound() throws Exception {
 		when(businessService.checkPerson(ArgumentMatchers.any())).thenReturn(new Person(1L, "TestPerson", 55));
 		mockMvc.perform(get("/people/{id}", 1).param("not-used", "test"))
 			   .andExpect(status().is2xxSuccessful())
