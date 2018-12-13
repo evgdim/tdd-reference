@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ApplicationControllerAdvice {
 	@ExceptionHandler(Throwable.class)
-	public ResponseEntity<?> handleException(Throwable t) {
+	public ResponseEntity<ErrorDetails> handleException(Throwable t) {
 		log.error("[handleException]", t);
 		return ResponseEntity.status(500).body(new ErrorDetails("1", t.getMessage()));
 	}

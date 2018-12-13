@@ -14,5 +14,5 @@ public class TddReferenceApplication {
 		ConfigurableApplicationContext ctx = SpringApplication.run(TddReferenceApplication.class, args);
 		PersonRepository personRepository = ctx.getBean(PersonRepository.class);
 		personRepository.save(new Person(null, "Evgeni", 29));
-	};
+	}
 }
