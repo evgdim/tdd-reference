@@ -1,4 +1,4 @@
-package com.github.evgdim.tdd.database;
+package com.github.evgdim.tdd;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -21,7 +21,7 @@ import com.github.evgdim.tdd.repository.JdbcAccountRepository;
 @JdbcTest
 @Import(JdbcAccountRepository.class)
 @Sql(scripts = {"drop_account_table.sql","create_account_table.sql"})
-public class O6_JdbcTests {
+public class O4_JdbcTests {
 	@Autowired
 	private AccountRepository accRepo;
 	

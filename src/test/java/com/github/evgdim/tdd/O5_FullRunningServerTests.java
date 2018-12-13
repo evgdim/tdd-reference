@@ -27,7 +27,7 @@ import com.github.evgdim.tdd.entity.Person;
 		"tddref.account.url=http://localhost:8888"
 })
 @AutoConfigureWireMock(port = 8888)
-public class O4_FullRunningServerTests {
+public class O5_FullRunningServerTests {
 //	@Rule
 //	public WireMockRule wireMockRule = new WireMockRule(8888, 8889);
 	

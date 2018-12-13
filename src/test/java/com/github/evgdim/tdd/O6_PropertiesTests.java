@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @TestPropertySource(properties= {"tddref.random3=my-test-property"}) //same as @SpringBootTest::properties, but also check the java doc for the default behavior
 @RunWith(SpringRunner.class)
 @Slf4j
-public class O5_PropertiesTests {
+public class O6_PropertiesTests {
 	@Autowired
 	private Environment env;
 	@Autowired
