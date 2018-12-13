@@ -6,6 +6,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentMatchers;
@@ -29,10 +30,18 @@ public class O3_MockMvcTests {
 	private PersonServiceImpl businessService;
 	
 	@Test
-	public void personOfTheYear_should_returnOKTestPerson() throws Exception {
+	public void person1_should_returnOKTestPerson() throws Exception {
 		when(businessService.checkPerson(ArgumentMatchers.any())).thenReturn(new Person(1L, "TestPerson", 55));
-		mockMvc.perform(get("/people/1"))
+		mockMvc.perform(get("/people/{id}", 1).param("not-used", "test"))
 			   .andExpect(status().is2xxSuccessful())
 			   .andExpect(jsonPath("$.name", equalTo("TestPerson")));
+	}
+	
+	@Test
+	public void person1_shouldReturn500_whenExceptionIsThrown() throws Exception {
+		when(businessService.checkPerson(ArgumentMatchers.any())).thenThrow(new RuntimeException("Test exception"));
+		mockMvc.perform(get("/people/{id}", 1))
+			   .andExpect(status().isInternalServerError())
+			   .andExpect(jsonPath("$.errorCode", CoreMatchers.notNullValue()));
 	}
 }
