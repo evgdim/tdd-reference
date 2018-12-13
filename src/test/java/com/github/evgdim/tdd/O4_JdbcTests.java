@@ -32,7 +32,7 @@ public class O4_JdbcTests {
 	}
 	
 	@Test
-	@Sql("insert_account_table.sql")
+	@Sql({"drop_account_table.sql","create_account_table.sql","insert_account_table.sql"})
 	public void getById_shouldReturnAccount_forExistingEntry() {
 		Optional<Account> acc = accRepo.findById(1L);
 		assertThat(acc.get().getAmount()).isEqualByComparingTo(BigDecimal.valueOf(200));
