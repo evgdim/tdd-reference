@@ -23,9 +23,11 @@ public class AccountClientImpl implements AccountClient {
 
 	@Override
 	public List<Account> findAccounts(Long id) {
+		ParameterizedTypeReference<List<Account>> type = new ParameterizedTypeReference<List<Account>>(){};
 		ResponseEntity<List<Account>> entity = restTemplate.exchange("/accounts/{id}", 
-				HttpMethod.GET, null, new ParameterizedTypeReference<List<Account>>(){}, id);
-		if(entity.getStatusCode() != HttpStatus.OK) {
+				HttpMethod.GET, null, type, id);
+		
+		if(entity.getStatusCode() != HttpStatus.OK) { 
 			throw new AccountsServiceException(entity);
 		}
 		return entity.getBody();
