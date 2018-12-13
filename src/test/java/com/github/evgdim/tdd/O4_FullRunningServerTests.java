@@ -13,11 +13,14 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.github.evgdim.tdd.entity.Person;
@@ -36,7 +39,9 @@ public class O4_FullRunningServerTests {
 	
 	@Test
 	public void health_shoudlReturn200() {
-		ResponseEntity<String> entity = this.restTemplate.getForEntity("/health", String.class);
+		ResponseEntity<String> entity = this.restTemplate
+											.withBasicAuth("user1", "pass1")
+											.getForEntity("/health", String.class);
 		assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
 	}
 	
@@ -47,7 +52,9 @@ public class O4_FullRunningServerTests {
 	                .withHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE)
 	                .withBodyFile("person.json")));
 	            
-		ResponseEntity<Person> entity = this.restTemplate.getForEntity("/external", Person.class);
+		ResponseEntity<Person> entity = this.restTemplate
+											.withBasicAuth("user1", "pass1")
+											.getForEntity("/external", Person.class);
 		assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
 		assertThat(entity.getBody().getAge()).isEqualTo(29);
 		assertThat(entity.getBody().getName()).isEqualTo("Evgeni");
@@ -60,10 +67,12 @@ public class O4_FullRunningServerTests {
 	                .withHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE)
 	                .withBodyFile("person.json")));
 	            
-		ResponseEntity<Person> entity = this.restTemplate.getForEntity("/external", Person.class);
+		ResponseEntity<Person> entity = this.restTemplate
+											.withBasicAuth("user1", "pass1")
+											.getForEntity("/external", Person.class);
 		
 		verify(getRequestedFor(urlEqualTo("/people")).withoutHeader(MediaType.APPLICATION_JSON_VALUE));
 		//verify(WireMock.moreThanOrExactly(1), getRequestedFor(urlEqualTo("/people")));
-		//verify(getRequestedFor(urlEqualTo("/people")).withRequestBody(WireMock.matchingJsonPath("$.whatever")));
+		//verify(getRequestedFor(urlEqualTo("/people")).withRequestBody(WireMock.matchingJsonPath("$.whatever", WireMock.containing("something"))));
 	}
 }
