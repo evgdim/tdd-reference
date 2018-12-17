@@ -23,7 +23,7 @@ import com.github.evgdim.tdd.service.PersonNotOldEnoughException;
 import com.github.evgdim.tdd.service.PersonServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
-public class O3_MockitoTests {
+public class O2_MockitoTests {
 	@Mock private PersonRepository personRepository;
 	@Mock private AccountClient accountClient;
 	
